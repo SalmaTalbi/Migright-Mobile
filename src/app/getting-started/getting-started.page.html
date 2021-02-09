@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- We need the form wrapping the slides so all the inputs in the different slides are part of the same form -->
+  <form class="getting-started-form" [formGroup]="gettingStartedForm">
+    <ion-slides class="getting-started-slides" pager="true">
+      <ion-slide class="browsing-categories-slide question-slide">
+        <ion-row class="slide-inner-row">
+          <ion-col class="question-options-col" size="12">
+            <h2 class="slide-title">Choose language</h2>
+            <ion-list class="question-options-list">
+              <ion-radio-group formControlName="language" (ionChange)="chooseLanguage($event)">
+                <ion-item class="question-option">
+                  <ion-label>English</ion-label>
+                  <ion-radio value="en"></ion-radio>
+                </ion-item>
+                <ion-item class="question-option">
+                  <ion-label>French</ion-label>
+                  <ion-radio value="fr"></ion-radio>
+                </ion-item>
+                <ion-item class="question-option">
+                  <ion-label>Arabic</ion-label>
+                  <ion-radio value="ar"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+          </ion-col>
+        </ion-row>
+      </ion-slide>
+    </ion-slides> 
+  </form>
+</ion-content>

@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-icon *ngIf="!toggledFilter" (click)="toggleFilter()" name="search"></ion-icon>
+      <!-- <ion-searchbar
+        *ngIf="toggledFilter"
+        [(ngModel)]="search"
+        (ionCancel)="cancelSearch($event)"
+        (ionClear) = "cancelSearch($event)"
+        [showCancelButton]="true">
+      </ion-searchbar> -->
+    </ion-buttons>
+    <ion-title>
+      Categories
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div>
+    <form [formGroup]="checkboxTagsForm" *ngIf="toggledFilter">
+      <ion-row class="checkbox-tags rounded-checkbox-tags">
+        <ion-item lines="none" class="checkbox-tag rounded-tag">
+          <ion-label class="tag-label">Lawyer</ion-label>
+          <ion-checkbox formControlName="tag_1"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="checkbox-tag rounded-tag">
+          <ion-label class="tag-label">Hospital</ion-label>
+          <ion-checkbox formControlName="tag_2"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="checkbox-tag rounded-tag">
+          <ion-label class="tag-label">Violence</ion-label>
+          <ion-checkbox formControlName="tag_3"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="checkbox-tag rounded-tag">
+          <ion-label class="tag-label">Police</ion-label>
+          <ion-checkbox formControlName="tag_4"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="checkbox-tag rounded-tag">
+          <ion-label class="tag-label">Document</ion-label>
+          <ion-checkbox formControlName="tag_5"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="checkbox-tag rounded-tag">
+          <ion-label class="tag-label">Embassy</ion-label>
+          <ion-checkbox formControlName="tag_6"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="checkbox-tag rounded-tag">
+          <ion-label class="tag-label">Help</ion-label>
+          <ion-checkbox formControlName="tag_7"></ion-checkbox>
+        </ion-item>
+        <ion-item lines="none" class="checkbox-tag rounded-tag">
+          <ion-label class="tag-label">Hostel</ion-label>
+          <ion-checkbox formControlName="tag_8"></ion-checkbox>
+        </ion-item>
+      </ion-row>
+      <ion-row>
+        <ion-col size="8">
+          <ion-searchbar
+            formControlName="search"
+            [showCancelButton]="true">
+          </ion-searchbar>
+        </ion-col>
+        <ion-col size="4">
+          <ion-button (click)="cancelSearch()">
+            Search
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </div>
+  <ion-row class="categories-list">
+    <ion-col class="category-item travel-category" size="12" *ngFor="let data of userRecords">
+      <app-image-shell [display]="'cover'" class="category-cover" animation="spinner" [src]="data.image">
+        <app-aspect-ratio [ratio]="{w:75, h:25}">
+          <a class="category-anchor" [routerLink]="['/app/categories/food']">
+            <h2 class="category-title">{{data.title}}</h2>
+          </a>
+        </app-aspect-ratio>
+      </app-image-shell>
+    </ion-col>
+  </ion-row>
+</ion-content>

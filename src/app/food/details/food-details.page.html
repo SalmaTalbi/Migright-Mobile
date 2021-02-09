@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="app/categories/food"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Food Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="food-details-content">
+  <ion-row class="image-row">
+    <ion-slides class="details-slides" pager="true" [options]="slidesOptions">
+      <ion-slide class="" *ngFor="let image of details?.usersPictures">
+        <ion-row class="slide-inner-row">
+          <app-image-shell animation="spinner"  class="user-picture-image" [src]="image" [alt]="'user image'">
+            <app-aspect-ratio [ratio]="{w:75, h:50}">
+            </app-aspect-ratio>
+          </app-image-shell>
+          <div class="chef-picture-wrapper">
+            <app-aspect-ratio [ratio]="{w: 1, h: 1}">
+              <app-image-shell class="chef-picture-image" [src]="recipe?.chef?.image" [alt]="'chef image'"></app-image-shell>
+            </app-aspect-ratio>
+          </div>
+        </ion-row>
+      </ion-slide>
+    </ion-slides>
+  </ion-row>
+  <ion-row class="description-row">
+    <ion-col size="9">
+      <h3 class="details-name">
+        <app-text-shell [data]="details?.name"></app-text-shell>
+      </h3>
+      <p class="details-style">
+        <app-text-shell [data]="details?.style"></app-text-shell>
+      </p>
+    </ion-col>
+  </ion-row>
+  
+  <hr class="details-divider">
+  <div class="reviews-wrapper">
+    <h3 class="detail-title">Description</h3>
+    <div class="reviews-list">
+      <div class="review-item" *ngFor="let review of details?.reviews">
+        
+        <p class="review-message">
+          <app-text-shell [data]="review.message" lines="5"></app-text-shell>
+        </p>
+       
+      </div>
+    </div>
+  </div>
+ 
+  <div class="location-wrapper">
+    <div class="location-header">
+      <h3 class="detail-title">Address</h3>
+      <span class="location-address">
+        <app-text-shell [data]="details.location?.address"></app-text-shell>
+      </span>
+    </div>
+    <!-- <app-aspect-ratio [ratio]="{w: 64, h: 20}">
+      <app-image-shell [src]="'https://maps.googleapis.com/maps/api/staticmap?center=' + details.location?.latlng + '&zoom=15&size=640x200&maptype=roadmap&format=png&visual_refresh=true&markers=size:mid%7Ccolor:0xd9453a%7C' + details.location?.latlng + '&key=YOUR_KEY_HERE'">
+      </app-image-shell>
+    </app-aspect-ratio> -->
+    <app-aspect-ratio [ratio]="{w: 64, h: 20}">
+      <app-image-shell class="location-image" animation="spinner" [src]="details.location?.mapImage" [alt]="'location map'"></app-image-shell>
+    </app-aspect-ratio>
+  </div>
+  <ion-row class="details-tags">
+    <ion-col class="tag-wrapper" *ngFor="let tag of details?.tags">
+      <span class="item-tag">
+        <app-text-shell [data]="tag"></app-text-shell>
+      </span>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
